@@ -1,0 +1,30 @@
+//Brute-force solution with two loops with running time complexity O(n)
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for(int i = 0; i < nums.length; i++){
+            for(int j = i+1; j < nums.length; j++){
+                if(nums[i] + nums[j] == target){ 
+                    return new int [] {i, j};
+                }
+            }
+        }
+        throw new IllegalArgumentException("Sum does not exist");
+    }
+}
+
+
+//Hash-map solution with two loops and running time complexity O(1)
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> array = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            array.put(nums[i], i);
+        }
+        for(int i = 0; i <nums.length; i++){
+            int complement = target - nums[i];
+            if(array.containsKey(complement) && array.get(complement) != i)
+                return new int[] {i, array.get(complement)};
+        }
+        throw new IllegalArgumentException("Sum does not exist");
+    }
+}
