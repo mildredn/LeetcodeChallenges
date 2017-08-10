@@ -1,0 +1,15 @@
+//Pay special attention to how arrays are being accessed. If the question and solution arrays are not equal in dimensions, then return the question array
+public class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int [][] solution = new int [r][c];
+        if(nums.length * nums[0].length != r * c){
+            return nums;
+        }
+        else{
+            for(int i = 0; i < r*c; i++){
+                solution[i/c][i%c] = nums[i/nums[0].length][i%nums[0].length];
+            }
+        }
+        return solution;
+    }
+}

@@ -1,0 +1,11 @@
+//Question asks to find max sum of min of n pairs in an array of 2n elements. So, if you sort array, and pick pairs such as(index1, index2), (index3, index4), ... and so on, the odd indices will always be the min of the pair. To get the max sum of these, just traverse through the 'odd' indices of the array and add these elements.
+public class Solution {
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int i = 0; i < nums.length; i+=2){
+            sum += nums[i];
+        }
+        return sum;
+    }
+}

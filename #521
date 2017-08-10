@@ -1,0 +1,9 @@
+//If the two strings are equal, no LUS exists. If they are unequal and same length, either length is the answer. If they are unequal and different length, larger length is the answer.
+public class Solution {
+    public int findLUSlength(String a, String b) {
+        if(a.equalsIgnoreCase(b))
+            return -1;
+        else 
+            return Math.max(a.length(), b.length());
+    }
+}

@@ -1,0 +1,27 @@
+//Delas with whitespaces between words, ends of words and single words
+public class Solution {
+    public String reverseWords(String s) {
+        char [] string = s.toCharArray();
+        char [] solution = new char[s.length()];
+        int low = 0, high = 0, previous = 0;
+        for(int i = 0; i < s.length(); i++){
+            if(Character.isWhitespace(string[i])){
+                for(high = i-1; low < i && high >= previous; low++, high--){
+                    solution[low] = string[high];
+                    
+                }
+                if(low >= s.length())
+                    break;
+                solution[low] = string[i];
+                low = i+1;
+                previous = i;
+            }
+        }
+        //For end of string and single words
+        for(int i = s.length()-1; low < s.length() && i >= previous; low++, i--){
+            solution[low] = string[i];
+        }
+
+        return new String(solution);
+    }
+}

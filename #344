@@ -1,0 +1,12 @@
+Solution to reverse a string using a char array
+public class Solution {
+    public String reverseString(String s) {
+        char [] string = s.toCharArray();
+        for(int low = 0, high = s.length() - 1; low < high; low++, high--){
+            char temp = string[high];
+            string[high] = string[low];
+            string[low] = temp;
+        }
+        return new String(string);
+    }
+}

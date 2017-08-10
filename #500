@@ -1,0 +1,28 @@
+//Solution using arrays - brute force approach
+public class Solution {
+    public String[] findWords(String[] words) {
+        ArrayList<String> solution = new ArrayList<String>();
+        String [] keyboardRows ={ "qwertyuiop", "asdfghjkl", "zxcvbnm"};
+        for(String word : words){
+            char [] wordArray = word.toLowerCase().toCharArray();
+            for(String row : keyboardRows){
+                boolean find = true;
+                for(char c : wordArray){
+                    if(!row.contains(c+"")){
+                        find = false;
+                        break;
+                    }
+                }
+                if(find)
+                    solution.add(word);
+            }
+        }
+        String [] solutionString = new String[solution.size()];
+        ListIterator<String> li = solution.listIterator();
+        int i = 0;
+        while(li.hasNext()){
+            solutionString[i++] = li.next();
+        }
+        return solutionString;
+    }
+}
