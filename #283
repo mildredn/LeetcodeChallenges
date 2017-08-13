@@ -1,0 +1,14 @@
+//Keep track of the first zero and keep swapping it with the first non-zero element you meet while traversing the array
+public class Solution {
+    public void moveZeroes(int[] nums) {
+        int last = 0;
+        for(int current = 0; current < nums.length; current++){
+            if(nums[current] != 0){
+                int temp = nums[current];
+                nums[current] = nums[last];
+                nums[last] = temp;
+                last++;
+            }            
+        }
+    }
+}

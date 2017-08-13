@@ -1,0 +1,13 @@
+//Use ex-or function because in ex-or : 0^n = n and n^n =0 That way you can find the extra character
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char c = 0;
+        int i;
+        for(i = 0; i < s.length(); i++){
+            c ^= s.charAt(i);
+            c ^= t.charAt(i);
+        }
+        c ^= t.charAt(i);
+        return c;
+    }
+}

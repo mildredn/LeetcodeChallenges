@@ -1,0 +1,18 @@
+//Count each individual square, multiply by 4. Count number of common sides by only checking number of right and down neighbours to avoid overcounting. Subtract by 2 times the number of shared sides.
+public class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int square = 0, neighbour = 0;
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if(grid[i][j] == 1){
+                    square++;
+                    if(i+1 != grid.length && grid[i+1][j] == 1)
+                        neighbour++;
+                    if(j+1 != grid[0].length && grid[i][j+1] == 1)
+                        neighbour++;
+                }
+            }
+        }
+        return square*4 - neighbour*2;
+    }
+}
