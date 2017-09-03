@@ -1,0 +1,28 @@
+//Saving visited nodes in a set will ensure that you can find the target answer by using the contains function. 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        HashSet<Integer> solution = new HashSet<Integer>();
+        return dfs(root, solution, k);
+    }
+    
+    public boolean dfs(TreeNode root, HashSet<Integer> solution, int k){
+        if(root == null)
+            return false;
+        else{
+            if(solution.contains(k-root.val))
+                return true;
+            solution.add(root.val);
+            //Using or you can find true value for either one if present
+            return (dfs(root.left, solution, k) || dfs(root.right, solution, k));    
+        }
+    }
+}

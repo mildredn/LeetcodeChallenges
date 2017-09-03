@@ -1,0 +1,38 @@
+Since we have to traverse nodes level by level, we should use BFS. Queue is the best data structure for this.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Double> averageOfLevels(TreeNode root) {
+        if(root == null)
+            return null;
+        
+        List<Double> result = new ArrayList<Double>();
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            int len = q.size();
+            double sum = 0.0;
+            for(int i = 0; i< len; i++){
+                TreeNode node = q.poll();
+                
+                sum += node.val;
+                
+                if(node.left != null)
+                    q.offer(node.left);
+                if(node.right != null)
+                    q.offer(node.right);
+            }
+            result.add(sum/len);
+        }
+        return result;
+    }
+}

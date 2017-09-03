@@ -1,0 +1,25 @@
+//Store either left or right node in a temp treenode so as to avoid overwriting the nodes. You can make the temp treenode final so as to make its value immutable. Recursion will just return the inverted subtree to you
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null)
+            return root;
+        else{
+            TreeNode left = root.left;
+            root.left = invertTree(root.right);
+            root.right = invertTree(left);
+            
+            return root;
+            
+        }
+    }
+}

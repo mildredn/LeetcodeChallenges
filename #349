@@ -9,9 +9,10 @@ public class Solution {
         }
         int index = 0;
         for(int i = 0; i < nums2.length; i++){
-            if(numbers.contains(nums2[i])){
+        //MAke sure that the number you're checking for does not already exist in the arraylist
+            if(numbers.contains(nums2[i]) && !result.contains(nums2[i])){
                 result.add(nums2[i]);
-                break;
+                
                 
             }
         }

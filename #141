@@ -1,0 +1,29 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        //If list is empty, return false as there is no cycle
+        if(head == null)
+            return false;
+        //Create two pointers - walker and runner. Walker will be one step ahead of current node and runner will be two steps ahead of the current node. 
+        ListNode walker = head, runner = head;
+        
+        while(runner.next != null && runner.next.next != null){
+            walker = walker.next;
+            runner = runner.next.next;
+            //If they are equal means we have found a cycle. 
+            if(walker == runner)
+                return true;
+        }
+        return false;
+    }
+}

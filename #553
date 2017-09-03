@@ -1,0 +1,22 @@
+//If length of array is 1, the that is the answer. For length 2, the answer is nums[0]/nums[1].
+//For any other length, answer is nums[0]*nums[2]*nums[3]... /nums[1]
+class Solution {
+    public String optimalDivision(int[] nums) {
+        
+        String result;
+        
+        if(nums.length == 1)
+            result = nums[0]+"";
+        else 
+            if(nums.length == 2)
+                result = nums[0]+"/"+nums[1];
+            else{
+                result = nums[0]+"/("+nums[1];
+                for(int i = 2; i < nums.length; i++){
+                    result += ("/"+nums[i]);
+                }
+                result += ")";
+            }
+        return result;
+    }
+}

@@ -1,0 +1,22 @@
+//Chec for the three cases of correct capital usage.
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        char [] tempWord = word.toCharArray();
+        int count = 0;
+        boolean result = false;
+        for(char letter : tempWord){
+            if(Character.isUpperCase(letter))
+                count++; // Counts uppercase characters only
+        }
+        
+        if(count == 0)
+           result = true; //If no uppercase characters present
+        else
+            if(count == 1 && Character.isUpperCase(word.charAt(0)))
+                result = true; //If first letter is uppercase only
+            else
+                if(count == word.length())
+                    result = true; //If all letters are uppercase
+        return result;
+    }
+}

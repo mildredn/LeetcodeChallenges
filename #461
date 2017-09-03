@@ -1,0 +1,7 @@
+class Solution {
+    public int hammingDistance(int x, int y) {
+    //x^y returns the number signifying the number of different bits. XOR returns a 1 for difference in bits, 0 for same numbers.
+    //bitCount counts the number of 1's in the binary form of number
+        return Integer.bitCount(x^y);
+    }
+}

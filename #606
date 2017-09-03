@@ -1,0 +1,30 @@
+//We will use preorder traversal/DFS here
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public String tree2str(TreeNode t) {
+        if(t == null)
+            return "";//Return empty string if root is null
+        else{
+            String result = t.val+"";//Add root to string
+            
+            if(t.left == null && t.right == null)
+                result += "";//If root has no children, don't add anything
+            else{
+                //If left child is null for root, add empty parentheses, else recurse
+                result += (t.left == null ? "()" : "("+tree2str(t.left)+")");
+                //If left child is null for root, add empty string, we don't want extra parentheses
+                result += (t.right == null ? "" : "("+tree2str(t.right)+")");
+                
+            }
+            return result;
+        }
+    }
+}

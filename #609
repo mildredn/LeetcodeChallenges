@@ -1,0 +1,36 @@
+//Seperate each directory into files
+class Solution {
+    public List<List<String>> findDuplicate(String[] paths) {
+        //This will contain the key(content),value(all the filenames containing the content) mapping
+        Map<String, Set<String>> result = new HashMap<String, Set<String>>(); 
+        //This will contain the result in the form of filenames of all files with the same content
+        List<List<String>> resultList = new ArrayList<List<String>>();
+        for(int i = 0; i < paths.length; i++){
+            //Using regex split function to split with space as a delimiter
+            //We will do this for each directory string
+            String [] path = paths[i].split("\\s+");
+            //Loop to seperate the filenames 
+            for(int j = 1; j < path.length; j++){
+                //Save the index that has the first occurence of a bracket (after open bracket we'll find the text content)
+                int index = path[j].indexOf("(");
+                //Save the content (with brackets since they are present in all text contents)
+                String text = path[j].substring(index);
+                //Form filename by appending path[0] and the filename
+                String filename = path[0]+"/"+path[j].substring(0, index);
+                //Add above filename to a set of filenames, wherein each file content is associated with a set of filenames. If the content already exists, getOrDefault will add the filename to that key, else it will create a new set
+                Set<String> filenames = result.getOrDefault(text, new HashSet<String>());
+                //Add the filename
+                filenames.add(filename);
+                result.put(text, filenames);    
+            }
+        }
+        for(String key : result.keySet()){
+        //Check if the correspoding value for key is greater than 1, meaning there exists corresponding values
+            if(result.get(key).size() > 1){
+            //Add filenames to result list
+                resultList.add(new ArrayList<String>(result.get(key)));
+            }
+        }
+        return resultList;
+    }
+}

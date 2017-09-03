@@ -1,0 +1,49 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    Map<Integer,Integer> sumCount;
+    int maxFrequency;
+    
+    public int[] findFrequentTreeSum(TreeNode root) {
+        maxFrequency = 0;
+        sumCount = new HashMap<Integer, Integer>();
+        
+        int sum = postorder(root);
+        
+        //If max frequency matches the key, add that key value pair to the result list
+        List<Integer> result = new ArrayList<>();
+        for(int key : sumCount.keySet()){
+            if(sumCount.get(key) == maxFrequency)
+                result.add(key);
+        }
+        
+        int[] resultArray = new int[result.size()];
+        for(int i = 0; i < result.size(); i++){
+            resultArray[i] = result.get(i);
+        }
+        return resultArray;
+    }
+    
+    //Function to travel postorder - left, right, root. 
+    private int postorder(TreeNode root){
+        if(root == null)
+            return 0;
+        else{
+            int sum = postorder(root.left) + postorder(root.right) + root.val;
+            //If the sum exists, add 1 to its count, else assign 0
+            int count = sumCount.getOrDefault(sum, 0) + 1;
+            //Add new count for each sum
+            sumCount.put(sum, count);
+            //If max frequency is less than count, update max frequency
+            maxFrequency = Math.max(maxFrequency, count);
+            return sum;
+        }
+    }
+}
