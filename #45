@@ -1,0 +1,26 @@
+class Solution {
+    public int jump(int[] nums) {
+        int n = nums.length;
+        //If length is less than 2, you cannot jump further. So steps will be 0
+        if(n < 2)
+            return 0;
+        //currentmax will track the max in each level, prevmax will track in the previous level, step will count the steps to reach n-1
+        int currentMax = 0, prevMax = 0, step = 0, i = 0;
+        //while there are nodes in each level
+        while(prevMax - i + 1 > 0){
+            step++;//go to next level
+            //calculate max for each array element
+            for( ; i <= prevMax; i++){
+                //update max if addition of new array element updates it.
+                currentMax = Math.max(currentMax, nums[i]+i);
+                //if current max exceeds array length, return the step number
+                if(currentMax >= n-1)
+                    return step;
+            }
+            //update previous level max and move to next level
+            prevMax = currentMax;
+        }
+        
+        return 0;
+    }
+}
