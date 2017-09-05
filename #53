@@ -1,0 +1,13 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        //Two counters - current max and overall max
+        int max = nums[0], current = nums[0];
+        for(int i = 1; i < nums.length; i++){
+            //current will check what the max is after adding the current element 
+            current = Math.max(current + nums[i], nums[i]);
+            //update the overall max is current exceeds it
+            max = Math.max(max, current);
+        }
+        return max;
+    }
+}
