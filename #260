@@ -1,0 +1,24 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        //Variable storing xor of each array number
+        int solution = 0;
+        for(int num : nums){
+            solution ^= num;
+        }
+        //Finding the last set bit
+        solution &= -solution;
+        
+        int[] result = {0, 0};
+        for(int num : nums){
+            //Check if bit is set in num
+            if((num & solution) == 0)
+                //xor for group 1
+                result[0] ^= num;
+            else
+                //xor for group 2
+                result[1] ^= num;
+        }
+        //return the results
+        return result;
+    }
+}
