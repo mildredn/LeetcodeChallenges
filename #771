@@ -1,0 +1,21 @@
+import java.util.Hashtable;
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        int output = 0; //variable to store output
+        //hashtable because unique values are present in J
+        Hashtable<Character, Integer> stringJ = new Hashtable<Character, Integer>();
+
+        //for loop to add J into hashtable
+        for(char ch : J.toCharArray()){
+            stringJ.put(ch, 0);
+        }
+
+        //for loop to check through S
+        for(char ch : S.toCharArray()){
+            if(stringJ.containsKey(ch)){
+                output++;
+            }
+        }
+        return output;
+    }
+}
