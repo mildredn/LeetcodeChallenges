@@ -1,0 +1,28 @@
+class Solution {
+    public boolean judgeCircle(String moves) {
+    //record position co-ordinates
+        int x = 0, y = 0;
+        for(char ch : moves.toCharArray()){
+          //increase and decrease x position for Left and Right
+          //increase and decrease y position for Up and Down
+            switch(ch) {
+                case 'L' :
+                    x += (-1);
+                    break;
+                case 'R' :
+                    x += (1);
+                    break;
+                case 'U' :
+                    y += (-1);
+                    break;
+                case 'D' :
+                    y += (1);
+                    break;
+            }
+        }
+        //if either of the co-ordinates do not add up to zero, the robot has not finished a circle
+        if(x == 0 && y == 0)
+            return true;
+        return false;
+    }
+}
