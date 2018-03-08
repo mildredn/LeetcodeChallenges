@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if(root == null)
+          //check if root is null
+            return null;
+        else{
+          //if root value < left limit, we only need the right subtree
+            if(root.val < L)
+                return trimBST(root.right, L, R);
+            if(root.val > R)
+          //if root value > right limit, we only need the left subtree
+                return trimBST(root.left, L, R);
+
+          //continue with left and right subtrees if L < current root value < R
+            root.left = trimBST(root.left, L, R);
+            root.right = trimBST(root.right, L, R);
+          //complete recursion
+            return root;
+        }
+    }
+}

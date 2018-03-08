@@ -1,0 +1,34 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+      //List to store result
+        List<Integer> result = new ArrayList<Integer>();
+        int n = 0, k = 0, r = 0;
+        //Loop to iterate from left to right boundaries
+        for(int i = left; i <= right; i++){
+          //Temp to store number
+            n = i;
+            //Loop to move through each digit in a number
+            while(n > 0){
+              //get last digit
+                k = n % 10;
+                //Check if digit is zero
+                if(k == 0){
+                    break;
+                }
+                //Check if remainder is 0
+                r = i % k;
+                if(r == 0){
+                    n = n/10;
+                }
+                else
+                    break;
+            }
+            if(n == 0){
+                result.add(i);
+            }
+            else
+                continue;
+        }
+        return result;
+    }
+}

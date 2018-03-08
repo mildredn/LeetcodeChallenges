@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+-- XOR sex with m and f gives the oppposite sex
+Update salary s
+set sex = char(ascii('m') ^ ascii('f') ^ ascii(sex));
